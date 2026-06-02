@@ -74,6 +74,26 @@ graph LR
 
 ## DIM
 
+```mermaid
+graph LR
+    %% 定义节点样式
+    classDef db fill:#FFE4B5,stroke:#333,stroke-width:2px;
+    classDef kafka fill:#FFD700,stroke:#333,stroke-width:2px;
+    classDef flink fill:#E0F7FA,stroke:#00838F,stroke-width:2px;
+    classDef storage fill:#C8E6C9,stroke:#2E7D32,stroke-width:2px;
+
+    %% 流程节点
+    MySQL((业务数据库<br/>MySQL)):::db -- Binlog日志 --> Kafka_ODS(Kafka ODS Topic):::kafka
+    Kafka_ODS -- 消费原始维度数据 --> Flink_ETL(Flink 实时ETL/清洗):::flink
+    
+    subgraph DIM_Processing [DIM层处理]
+        direction TB
+        Flink_ETL -- 写入/更新 --> Dim_Store[(维度存储<br/>HBase/Redis)]:::storage
+    end
+    
+    Dim_Store -.-> DWD_Layer(DWD层事实表<br/>进行流式关联):::flink
+```
+
 将业务系统**MySQL**中的14张表Sink到**HBase**为DIM维度层。
 
 | MySQL(edu)           | HBase目标表名 (dim_*)    |

@@ -42,6 +42,7 @@ public class DwsUserLoginWindow {
             @Override
             public String getKey(String value) throws Exception {
                 JSONObject jsonObject = JSON.parseObject(value);
+                System.out.println("111-接入数据："+value);
                 return jsonObject.getString("userId");
             }
         });
@@ -68,17 +69,20 @@ public class DwsUserLoginWindow {
                     // 判断为独立  不判断为回流
                     uvCount = 1L;
                     lastLoginDtState.update(curDate);
+                    System.out.println("独立用户数"+uvCount);
                 } else {
                     if (lastLoginDt.compareTo(curDate) < 0) {
+                        System.out.println("判断为回流用户数"+backCount);
                         // 一定是独立
                         uvCount = 1L;
-                        if (ts - DateFormatUtil.toTs(lastLoginDt) > 7 * 24 * 3600 * 1000) {
+                        if (ts - DateFormatUtil.toTs(lastLoginDt) > 1 * 24 * 3600 * 1000) {
                             backCount = 1L;
                         }
                         lastLoginDtState.update(curDate);
                     }
                 }
                 if (uvCount != 0L || backCount != 0L) {
+                    System.out.println("回流用户数"+uvCount);
                     out.collect(DwsUserLoginWindowBean.builder()
                             .backCount(backCount)
                             .uvCount(uvCount)
@@ -120,8 +124,7 @@ public class DwsUserLoginWindow {
                 });
 
         // TODO 7 写出到clickHouse
-        reduceStream.addSink(ClickHouseUtil.getJdbcSink("" +
-                "insert into dws_user_login_window values(?,?,?,?,?)"));
+        reduceStream.addSink(ClickHouseUtil.getJdbcSink("insert into dws_user_login_window values(?,?,?,?,?)"));
 
         // TODO 8 运行程序
         env.execute();

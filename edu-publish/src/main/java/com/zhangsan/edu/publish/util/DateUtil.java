@@ -3,10 +3,6 @@ package com.zhangsan.edu.publish.util;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-/**
- * description:
- * Created by 铁盾 on 2022/4/18
- */
 public class DateUtil {
     public static Integer now() {
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyyMMdd");
