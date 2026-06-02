@@ -31,75 +31,42 @@ flowchart LR
 
 ## 实时数仓
 
-<svg width="1000" height="550" viewBox="0 0 800 550" xmlns="http://www.w3.org/2000/svg">
-    <defs>
-        <!-- 阴影滤镜 -->
-        <filter id="shadow" x="-5%" y="-5%" width="110%" height="110%">
-            <feDropShadow dx="0" dy="4" stdDeviation="4" flood-color="#0f172a" flood-opacity="0.06"/>
-        </filter>
-        <!-- 箭头定义 -->
-        <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto">
-            <path d="M 0 0 L 10 5 L 0 10 z" fill="#94a3b8" />
-        </marker>
-    </defs>
-    <!-- 背景 -->
-    <rect width="100%" height="100%" fill="#f8fafc" />
-    <rect x="20" y="20" width="760" height="510" fill="#ffffff" rx="12" stroke="#e2e8f0" stroke-width="1" />
-    <!-- 标题 -->
-    <text x="400" y="55" font-family="system-ui, -apple-system, sans-serif" font-size="20" font-weight="bold" fill="#0f172a" text-anchor="middle" letter-spacing="1">数据仓库分层架构</text>
-    <line x1="300" y1="65" x2="500" y2="65" stroke="#cbd5e1" stroke-width="2" stroke-linecap="round"/>
-    <!-- 连接线（数据流） -->
-    <g id="connections" fill="none" stroke="#94a3b8" stroke-width="2" marker-end="url(#arrow)">
-        <!-- ODS 到 DWD -->
-        <path d="M 400 400 L 400 380 L 250 380 L 250 375" />
-        <!-- ODS 到 DIM -->
-        <path d="M 400 400 L 400 380 L 600 380 L 600 375" />
-        <!-- DWD 到 DWS -->
-        <path d="M 250 280 L 250 260 L 400 260 L 400 255" />
-        <!-- DIM 到 DWS -->
-        <path d="M 600 280 L 600 260 L 400 260 L 400 255" />
-        <!-- DWS 到 ADS -->
-        <path d="M 400 180 L 400 145" />
-    </g>
-    <!-- 第5层：ADS -->
-    <g id="ads" transform="translate(200, 80)">
-        <rect width="400" height="60" rx="8" fill="#FAF5FF" stroke="#E9D5FF" stroke-width="1.5" filter="url(#shadow)"/>
-        <text x="200" y="25" font-family="system-ui, sans-serif" font-size="15" font-weight="bold" fill="#6B21A8" text-anchor="middle">ADS (Application Data Service)</text>
-        <text x="200" y="42" font-family="system-ui, sans-serif" font-size="12" fill="#9333EA" text-anchor="middle">数据应用层</text>
-        <text x="200" y="55" font-family="system-ui, sans-serif" font-size="12" fill="#A855F7" text-anchor="middle">存放各项统计指标结果。</text>
-    </g>
-    <!-- 第4层：DWS -->
-    <g id="dws" transform="translate(200, 180)">
-        <rect width="400" height="70" rx="8" fill="#FFF7ED" stroke="#FED7AA" stroke-width="1.5" filter="url(#shadow)"/>
-        <text x="200" y="25" font-family="system-ui, sans-serif" font-size="15" font-weight="bold" fill="#9A3412" text-anchor="middle">DWS (Data Warehouse Summary)</text>
-        <text x="200" y="42" font-family="system-ui, sans-serif" font-size="12" fill="#EA580C" text-anchor="middle">汇总数据层</text>
-        <text x="200" y="55" font-family="system-ui, sans-serif" font-size="12" fill="#F97316" text-anchor="middle">基于上层的指标需求，以分析的主题对象作为建模驱动，</text>
-        <text x="200" y="67" font-family="system-ui, sans-serif" font-size="12" fill="#F97316" text-anchor="middle">构建公共统计粒度的汇总表。</text>
-    </g>
-    <!-- 第3层：DWD 和 DIM -->
-    <!-- DWD -->
-    <g id="dwd" transform="translate(40, 280)">
-        <rect width="300" height="90" rx="8" fill="#EFF6FF" stroke="#BFDBFE" stroke-width="1.5" filter="url(#shadow)"/>
-        <text x="150" y="25" font-family="system-ui, sans-serif" font-size="15" font-weight="bold" fill="#1E3A8A" text-anchor="middle">DWD (Data Warehouse Detail)</text>
-        <text x="150" y="42" font-family="system-ui, sans-serif" font-size="12" fill="#2563EB" text-anchor="middle">明细数据层</text>
-        <text x="150" y="58" font-family="system-ui, sans-serif" font-size="12" fill="#3B82F6" text-anchor="middle">基于维度建模理论进行构建，存放维度模型中的事实表，</text>
-        <text x="150" y="73" font-family="system-ui, sans-serif" font-size="12" fill="#3B82F6" text-anchor="middle">保存各业务过程最小粒度的操作记录。</text>
-    </g>
-    <!-- DIM -->
-    <g id="dim" transform="translate(460, 280)">
-        <rect width="300" height="90" rx="8" fill="#F0FDF4" stroke="#BBF7D0" stroke-width="1.5" filter="url(#shadow)"/>
-        <text x="150" y="25" font-family="system-ui, sans-serif" font-size="15" font-weight="bold" fill="#166534" text-anchor="middle">DIM (Dimension)</text>
-        <text x="150" y="42" font-family="system-ui, sans-serif" font-size="12" fill="#16A34A" text-anchor="middle">公共维度层</text>
-        <text x="150" y="58" font-family="system-ui, sans-serif" font-size="12" fill="#22C55E" text-anchor="middle">基于维度建模理论进行构建，</text>
-        <text x="150" y="73" font-family="system-ui, sans-serif" font-size="12" fill="#22C55E" text-anchor="middle">存放维度模型中的维度信息。</text>
-    </g>
-    <!-- 第2层：ODS -->
-    <g id="ods" transform="translate(200, 400)">
-        <rect width="400" height="70" rx="8" fill="#F1F5F9" stroke="#CBD5E1" stroke-width="1.5" filter="url(#shadow)"/>
-        <text x="200" y="25" font-family="system-ui, sans-serif" font-size="15" font-weight="bold" fill="#334155" text-anchor="middle">ODS (Operation Data Store)</text>
-        <text x="200" y="42" font-family="system-ui, sans-serif" font-size="12" fill="#475569" text-anchor="middle">原始数据层</text>
-        <text x="200" y="55" font-family="system-ui, sans-serif" font-size="12" fill="#64748B" text-anchor="middle">存放未经过处理的原始数据，结构上与源系统保持一致，</text>
-        <text x="200" y="67" font-family="system-ui, sans-serif" font-size="12" fill="#64748B" text-anchor="middle">是数据仓库的数据准备区。</text></g></svg>
+```mermaid
+graph LR
+    %% 定义节点样式
+    classDef source fill:#FFE4B5,stroke:#333,stroke-width:2px;
+    classDef layer fill:#E0F7FA,stroke:#00838F,stroke-width:2px;
+    classDef app fill:#C8E6C9,stroke:#2E7D32,stroke-width:2px;
+
+    %% 数据源与流向
+    Source(数据源 / Kafka):::source --> ODS(ODS 层<br/>贴源层/原始数据):::layer
+    Source --> Dim(DIM 层<br/>公共维度层):::layer
+    Dim -.-> DWD
+    ODS --> DWD(DWD 层<br/>明细数据层):::layer
+    DWD --> DWS(DWS 层<br/>汇总数据层):::layer
+    DWS --> ADS(ADS 层<br/>应用数据层):::layer
+    ADS --> App(业务应用 / 报表 / 大屏):::app
+
+    %% 布局微调说明：DIM层通常作为旁路维度表，在DWD/DWS层进行关联
+```
+
+- **ODS 层（贴源层/原始数据层）** 
+  直接存放从数据源（如 Kafka、业务库、日志文件）接入的原始数据，保持与源系统相同的结构和粒度，不做过多清洗加工。
+
+- **DIM 层（公共维度层）** 
+  存储维度表（如日期、用户、产品、地区等），描述业务实体属性，为各层分析提供一致的维度视角，通常通过 ETL 定期或实时更新。
+
+- **DWD 层（明细数据层）** 
+  对 ODS 数据进行清洗、去重、格式统一、维表退化等处理，保留最细粒度的业务过程明细，是后续汇总分析的基础。
+
+- **DWS 层（汇总数据层）** 
+  基于 DWD 层按主题或分析维度进行预聚合（如每日用户活跃汇总、订单统计），粒度为轻度汇总，大幅提升查询性能。
+
+- **ADS 层（应用数据层）** 
+  面向具体业务应用、报表或大屏的结果数据，高度聚合或直接满足指标需求，通常推送到 MySQL、ClickHouse、Redis 等供前端调用。
+
+
+
 
 ## ODS
 
