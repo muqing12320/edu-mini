@@ -9,8 +9,10 @@
     <version>1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
     <modules>
-        <module>edu-warehouse</module>
+        <module>edu-mock-data</module>
+        <module>edu-flume-interceptor</module>
         <module>edu-publish</module>
+        <module>edu-warehouse</module>
     </modules>
 
     <properties>
