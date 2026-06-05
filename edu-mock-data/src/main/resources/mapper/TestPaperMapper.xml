@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhangsan.edu.mock.mapper.TestPaperMapper">
+    <select id="selectPaperWithQuestion" resultMap="rs">
+      SELECT  p.*,
+	q.`id` q_id,
+	q.`course_id` q_course_id,
+	q.`chapter_id` q_chapter_id,
+	q.`question_txt`,
+	q.`question_type`,
+	q.`create_time` q_create_time,
+	q.`update_time` q_update_time,
+	q.`deleted`q_deleted,
+	k.id k_id,
+	k.`course_id` k_course_id,
+	k.`chapter_id`  k_chapter_id,
+        k.`point_level` ,
+        k.`point_txt`,
+        k.`publisher_id` k_pulisher_id,
+        k.`create_time` k_create_time,
+        k.`update_time` k_update_time,
+        k.`deleted` k_deleted,
+        pq.score q_score,
+        op.id o_id,
+        op.`is_correct`,
+        op.`option_txt`,
+        op.`question_id` o_question_id,
+        op.`update_time` o_update_time ,
+        op.`create_time` o_create_time,
+        op.`deleted` o_deleted
+ FROM `test_paper` p
+          LEFT  JOIN  `test_paper_question` pq ON p.`id`= pq.paper_id
+          LEFT  JOIN  `test_question_info` q ON  q.id= pq.`question_id`
+           LEFT JOIN `test_point_question` kq ON  kq.`question_id`=q.`id`
+           LEFT JOIN   `knowledge_point`  k  ON  k.`id`=kq.`point_id`
+           LEFT JOIN   `test_question_option` op ON op.`question_id`=q.`id`
+           WHERE  p.deleted=0
+
+    </select>
+
+    <resultMap id="rs" type="com.zhangsan.edu.mock.bean.TestPaper" autoMapping="true">
+        <result property="id" column="id"></result>
+        <collection property="testQuestionInfoList" ofType="com.zhangsan.edu.mock.bean.TestQuestionInfo" autoMapping="true">
+            <result property="id" column="q_id"></result>
+            <result property="courseId" column="q_course_id"></result>
+            <result property="deleted" column="q_deleted"></result>
+            <result property="createTime" column="q_create_time"></result>
+            <result property="updateTime" column="update_time_cp"></result>
+            <result property="score" column="q_score"></result>
+            <collection property="testQuestionOptionList" ofType="com.zhangsan.edu.mock.bean.TestQuestionOption" autoMapping="true">
+
+                <result property="id" column="o_id"></result>
+                <result property="questionId" column="o_question_id"></result>
+                <result property="createTime" column="o_create_time"></result>
+                <result property="deleted" column="o_deleted"></result>
+                <result property="updateTime" column="o_update_time"></result>
+            </collection>
+            <collection property="knowledgePointList" ofType="com.zhangsan.edu.mock.bean.KnowledgePoint" autoMapping="true">
+                <result property="id" column="k_id"></result>
+                <result property="courseId" column="k_course_id"></result>
+                <result property="publisherId" column="k_pulisher_id"></result>
+                <result property="chapterId" column="k_chapter_id"></result>
+                <result property="createTime" column="k_create_time"></result>
+                <result property="deleted" column="k_deleted"></result>
+                <result property="updateTime" column="k_update_time"></result>
+            </collection>
+        </collection>
+    </resultMap>
+</mapper>
