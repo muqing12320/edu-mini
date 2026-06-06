@@ -1,0 +1,57 @@
+[{
+  "brand": "华为",
+  "channel": "huawei",
+  "dateId": "2026-03-21",
+  "loginTime": "2026-03-21 01:00:00",
+  "midId": "mid_202",
+  "model": "Mate 40",
+  "operatingSystem": "Android 11",
+  "provinceId": "2",
+  "sourceId": "2",
+  "ts": 1774026000000,
+  "userId": "8002",
+  "versionCode": "v2.1.133"
+},
+{
+  "brand": "华为",
+  "channel": "huawei",
+  "dateId": "2026-03-23",
+  "loginTime": "2026-03-23 08:37:07",
+  "midId": "mid_202",
+  "model": "Mate 40",
+  "operatingSystem": "Android 11",
+  "provinceId": "2",
+  "sourceId": "2",
+  "ts": 1774226227000,
+  "userId": "8002",
+  "versionCode": "v2.1.133"
+},
+{
+  "brand": "OPPO",
+  "channel": "oppo",
+  "dateId": "2026-03-21",
+  "loginTime": "2026-03-21 02:00:00",
+  "midId": "mid_204",
+  "model": "Find X3",
+  "operatingSystem": "Android 11",
+  "provinceId": "4",
+  "sourceId": "4",
+  "ts": 1774029600000,
+  "userId": "8004",
+  "versionCode": "v2.1.132"
+},
+{
+  "brand": "watermarker",
+  "channel": "watermarker",
+  "dateId": "2026-03-23",
+  "loginTime": "2026-03-23 23:59:59",
+  "midId": "mid_999",
+  "model": "Test",
+  "operatingSystem": "Android",
+  "provinceId": "1",
+  "sourceId": "1",
+  "ts": 1774281599000,
+  "userId": "user_heartbeat",
+  "versionCode": "v1.0.0"
+}
+]

@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Select;
 import java.util.List;
 
 public interface UserStatsMapper {
+
     @Select("select 'back_count'          type,\n" +
             "       sum(back_count)    back_count\n" +
             "from dws_user_login_window\n" +
@@ -20,7 +21,8 @@ public interface UserStatsMapper {
             "select 'newUserCt' type,\n" +
             "       sum(register_count) register_count\n" +
             "from dws_user_register_window\n" +
-//            "where toYYYYMMDD(stt) = #{date}" +
+            "where toYYYYMMDD(stt) = #{date}" +
             ";")
     List<UserChangeCtPerType> selectUserChangeCtPerType(@Param("date")Integer date);
+
 }

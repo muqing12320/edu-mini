@@ -24,6 +24,7 @@ public class UserStatsController {
         if (date == 1) {
             date = DateUtil.now();
         }
+        System.out.println("date: " + date);
         List<UserChangeCtPerType> userChangeCtList = userStatsService.getUserChangeCt(date);
         Map<String, Object> result = new HashMap<>();
 

@@ -138,8 +138,6 @@ public class DwsUserRegisterWindow {
         });
         beanStream.print("bean stream bbbbb");
 
-
-
         // TODO 6 设置水位线
         SingleOutputStreamOperator<DwsUserRegisterWindowBean> withWaterMarkStream = beanStream.assignTimestampsAndWatermarks(WatermarkStrategy.<DwsUserRegisterWindowBean>forBoundedOutOfOrderness(Duration.ofSeconds(5L)).withTimestampAssigner(new SerializableTimestampAssigner<DwsUserRegisterWindowBean>() {
             @Override

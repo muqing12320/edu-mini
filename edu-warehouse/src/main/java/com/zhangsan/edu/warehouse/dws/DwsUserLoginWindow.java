@@ -66,14 +66,11 @@ public class DwsUserLoginWindow {
                 long backCount = 0L;
 
                 if (lastLoginDt == null) {
-                    // 判断为独立  不判断为回流
                     uvCount = 1L;
                     lastLoginDtState.update(curDate);
                     System.out.println("独立用户数"+uvCount);
                 } else {
                     if (lastLoginDt.compareTo(curDate) < 0) {
-                        System.out.println("判断为回流用户数"+backCount);
-                        // 一定是独立
                         uvCount = 1L;
                         if (ts - DateFormatUtil.toTs(lastLoginDt) > 1 * 24 * 3600 * 1000) {
                             backCount = 1L;
@@ -82,7 +79,7 @@ public class DwsUserLoginWindow {
                     }
                 }
                 if (uvCount != 0L || backCount != 0L) {
-                    System.out.println("回流用户数"+uvCount);
+                    System.out.println("独立用户数: "+uvCount+"\t回流用户数: "+ backCount);
                     out.collect(DwsUserLoginWindowBean.builder()
                             .backCount(backCount)
                             .uvCount(uvCount)
@@ -114,7 +111,9 @@ public class DwsUserLoginWindow {
                     public void process(Context context, Iterable<DwsUserLoginWindowBean> elements, Collector<DwsUserLoginWindowBean> out) throws Exception {
                         String stt = DateFormatUtil.toYmdHms(context.window().getStart());
                         String edt = DateFormatUtil.toYmdHms(context.window().getEnd());
+                        System.out.println("=== 窗口触发 === 窗口: [" + stt + ", " + edt + ")");
                         for (DwsUserLoginWindowBean element : elements) {
+                            System.out.println("窗口内元素: " + element);
                             element.setStt(stt);
                             element.setEdt(edt);
                             element.setTs(System.currentTimeMillis());
@@ -122,7 +121,7 @@ public class DwsUserLoginWindow {
                         }
                     }
                 });
-
+        reduceStream.print("insert into clickhouse: ");
         // TODO 7 写出到clickHouse
         reduceStream.addSink(ClickHouseUtil.getJdbcSink("insert into dws_user_login_window values(?,?,?,?,?)"));
 

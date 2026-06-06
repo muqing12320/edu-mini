@@ -42,7 +42,7 @@ public class KafkaUtil {
                         return BasicTypeInfo.STRING_TYPE_INFO;
                     }
                 })
-                .setStartingOffsets(OffsetsInitializer.committedOffsets(OffsetResetStrategy.EARLIEST))
+                .setStartingOffsets(OffsetsInitializer.committedOffsets(OffsetResetStrategy.LATEST))
                 .build();
     }
 

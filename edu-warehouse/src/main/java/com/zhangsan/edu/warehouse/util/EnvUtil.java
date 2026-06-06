@@ -25,7 +25,7 @@ public class EnvUtil {
         env.getCheckpointConfig().setCheckpointTimeout(60 * 1000L);
         env.getCheckpointConfig().setMinPauseBetweenCheckpoints(3000L);
         env.getCheckpointConfig().setExternalizedCheckpointCleanup(
-                CheckpointConfig.ExternalizedCheckpointCleanup.DELETE_ON_CANCELLATION
+                CheckpointConfig.ExternalizedCheckpointCleanup.RETAIN_ON_CANCELLATION
         );
         env.setRestartStrategy(RestartStrategies.failureRateRestart(
                 3, Time.days(1), Time.minutes(1)
