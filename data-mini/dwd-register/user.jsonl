@@ -1,0 +1,57 @@
+{
+  "common": {
+    "ar": "26",
+    "ba": "Huawei",
+    "ch": "HuaWei Store",
+    "is_new": "1",
+    "md": "Huawei Mate90",
+    "mid": "mid_001",
+    "os": "HarmonyOS 7.0",
+    "sc": "2",
+    "sid": "a1b2c3d4-e5f6-7890-abcd-1234567890ab",
+    "uid": "1001"
+  },
+  "page": {
+    "during_time": 17619,
+    "page_id": "register"
+  },
+  "ts": 1734567890000
+}
+{
+  "common": {
+    "ar": "26",
+    "ba": "Apple",
+    "ch": "App Store",
+    "is_new": "1",
+    "md": "iPhone 16",
+    "mid": "mid_002",
+    "os": "iOS 18.0",
+    "sc": "2",
+    "sid": "b2c3d4e5-f6a1-0987-bcda-2345678901bc",
+    "uid": "1002"
+  },
+  "page": {
+    "during_time": 18234,
+    "page_id": "register"
+  },
+  "ts": 1734567891000
+}
+{
+  "common": {
+    "ar": "26",
+    "ba": "Xiaomi",
+    "ch": "Mi Store",
+    "is_new": "1",
+    "md": "Xiaomi 15",
+    "mid": "mid_003",
+    "os": "HyperOS 2.0",
+    "sc": "2",
+    "sid": "c3d4e5f6-a1b2-6789-cdab-3456789012cd",
+    "uid": "1003"
+  },
+  "page": {
+    "during_time": 16542,
+    "page_id": "register"
+  },
+  "ts": 1734567892000
+}

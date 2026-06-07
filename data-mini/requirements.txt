@@ -1,3 +1,5 @@
+paramiko
+pymysql
 kafka-python
 clickhouse_connect
 tabulate

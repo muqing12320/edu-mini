@@ -1,0 +1,4 @@
+login_name,nick_name,passwd,real_name,phone_num,email,head_img,user_level,birthday,gender,status
+zs,zhangsan,e10adc3949ba59abbe56e057f20f883e,张三,13800138000,zhangsan@example.com,http://img.example.com/avatar/1.jpg,1,1990-01-01,M,active
+ls,lisi,e10adc3949ba59abbe56e057f20f883e,李四,13900139000,lisi@example.com,http://img.example.com/avatar/2.jpg,2,1995-05-15,F,active
+ww,wangwu,e10adc3949ba59abbe56e057f20f883e,王五,13700137000,wangwu@example.com,http://img.example.com/avatar/3.jpg,1,1988-10-20,M,inactive
